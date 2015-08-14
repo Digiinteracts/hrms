@@ -1,0 +1,46 @@
+<div class="head"><h1><i class="fa fa-briefcase fa-fw"></i> Add Work Week</h1></div>
+<div class="inner">
+<%= form_for @workweek, :as => :work_week , :url => addworkweek_path, :method => :post do |f| %>
+  <p>
+    <%= f.label 'Monday' %><br/>
+    <%= f.collection_select "mon", workingOptions,:first,:last %> <%= show_field_error(@workweek, :mon) %>
+  </p>
+  <p>
+    <%= f.label 'Tuesday' %><br/>
+   <%= f.collection_select "tue", workingOptions,:first,:last %> <%= show_field_error(@workweek, :tue) %>
+  </p>
+  <p>
+    <%= f.label 'Wednesday' %><br/>
+   <%= f.collection_select "wed", workingOptions,:first,:last %> <%= show_field_error(@workweek, :wed) %>
+  </p>
+  <p>
+    <%= f.label 'Thursday' %><br/>
+   <%= f.collection_select "thu", workingOptions,:first,:last %> <%= show_field_error(@workweek, :thu) %>
+  </p>
+  <p>
+    <%= f.label 'Friday' %><br/>
+   <%= f.collection_select "fri", workingOptions,:first,:last %>
+    <%= show_field_error(@workweek, :fri) %>
+  </p>
+  <p>
+    <%= f.label 'Saturday' %><br/>
+   <%= f.collection_select "sat", workingOptions,:first,:last %>
+    <%= show_field_error(@workweek, :sat) %>
+  </p>
+  <p>
+    <%= f.label 'Sunday' %><br/>
+   <%#= select_tag "work_week[sun]", "<option value='1'>Full Day</option><option value='2'>Half Day</option><option value='3'>Non-working Day</option>".html_safe %>
+    <%= f.collection_select "sun", workingOptions,:first,:last %>
+    <%= show_field_error(@workweek, :sun) %>
+  </p>
+  
+  <p>
+    <%= if @workweek.new_record? 
+        f.submit  'Add Work Week'
+      else 
+        f.submit  'Update Work Week'
+      end%>&nbsp;&nbsp;&nbsp;
+    
+  </p>
+<% end %>
+</div>

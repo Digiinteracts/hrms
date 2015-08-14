@@ -1,0 +1,62 @@
+<div class="head"><h1><span class="icon-stack">  
+  <i class="fa fa-server icon-stack-2x"></i>
+  <i class="fa fa-plus fa-sever-plus icon-stack-1x"></i>
+</span> Add Leave Type</h1></div>
+<div class="inner">
+<%= form_for @leavetype, :url => addleavetype_path, :method => :post do |f| %>
+  <p>
+    <%= f.label 'Leave Type' %><br/>
+    <%= f.text_field :leavename %>
+    <%= show_field_error(@leavetype, :leavename) %>
+  </p>
+  <p>
+    <%= f.label 'Status' %><br/>
+    <%= f.collection_select "status", status,:first,:last %>
+    <%#= select_tag "leave_type[status]", "<option value='1'>Active</option><option value='0'>Inctive</option>".html_safe %>
+    <%= show_field_error(@leavetype, :status) %>
+  </p>
+  
+  
+    <p>
+    <%  if @leavetype.new_record? %>
+      <%=f.submit 'Add Period' %>
+      <%  else 
+        %>
+       <%=f.hidden_field :id%>
+      <%=f.submit 'Update Period' %>
+      <%  end %>&nbsp;&nbsp;&nbsp;
+    
+  </p>
+    
+  </p>
+<% end %>
+</div>
+
+<div class="head"><h1><i class="fa fa-server icon-stack-2x"></i> Leave Type</h1></div>
+<div class="inner">
+  <table class="all-user-list">
+    <tr>
+      <th width="30%">Leave Type</th>
+      <th width="40%">Status</th>
+      
+      <th width="10%">Action</th>
+    </tr>
+    <% 
+    i = 1
+    for leave_type in @leavetypes 
+      classname=""
+          if i%2 == 0          
+          classname = "class=even"
+          end
+    %>
+      <tr>
+        <td <%=classname%>><%= leave_type.leavename %></td>
+        <td <%=classname%>><%= leave_type.status == 1 ? "Active" : "Inactive" %></td>
+        
+        <td <%=classname%>>
+      <%= link_to '<i class="fa fa-pencil fa-fw"></i>'.html_safe, edit_leave_type_path(leave_type), :method => :get %> 
+      <%#= link_to 'Delete', leave_type, :data => {:confirm => "Are you sure?"}, :method => :delete %></td>
+      </tr>
+    <% i += 1; end %>
+  </table>
+</div>

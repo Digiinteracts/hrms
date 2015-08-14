@@ -1,0 +1,7 @@
+<div class="head">
+    <h1><i class="fa fa-dashboard fa-fw"></i> Dashboard</h1>
+</div>
+<div class="inner">
+    <p><h1><%= @current_user.firstname%> <%= @current_user.lastname%></h1></p>
+    <p>Joined on: <%= @current_user.date_added.strftime "%A %d %b %Y" %></p>
+</div>

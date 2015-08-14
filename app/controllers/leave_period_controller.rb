@@ -1,0 +1,3 @@
+class LeavePeriodController < ApplicationController
+  
+end

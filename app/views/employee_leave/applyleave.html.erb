@@ -1,0 +1,59 @@
+<div class="head">
+    <h1>Apply Leave</h1>
+</div>
+<div class="inner">
+    <%= form_for @myleaves, :url => applyleave_path, :method => :post do |f| %>
+      <p>
+          <%= f.label 'Leave type:' %><br/>
+          <%= f.collection_select "leave_type_id", @leavetypes, :id, :leavename,{:include_blank=>true} %>
+          <%= show_field_error(@myleaves, :leave_type_id) %>
+      </p>
+      <div style="display:none" id="leave_balance"></div>
+      <p>
+          <%= f.label 'From date:' %><br/>
+          <%= f.text_field :from_date, :class => "datepicker" %>
+          <%= show_field_error(@myleaves, :from_date) %>
+      </p> 
+      <p>
+          <%= f.label 'To date:' %><br/>
+          <%= f.text_field :to_date, :class => "datepicker" %>
+          <%= show_field_error(@myleaves, :to_date) %>
+      </p> 
+      
+      <p>
+          <%= f.label 'Duration:' %><br/>
+          <%= f.collection_select "leave_duration", leave_duration, :first,:last, {:selected => (1 if @myleaves.length_days == 0.5) } %>
+          <%= f.collection_select "day_half", day_half, :first,:last ,{}, {:style => "display:none"} %>
+          <%= show_field_error(@myleaves, :leave_duration) %>
+      </p>
+      
+      <p>
+          <%= f.label 'Reason:' %><br/>
+          <%= f.text_area :comments, :rows => 5, :cols => 50 %>
+          <%= show_field_error(@myleaves, :comments) %>
+      </p>
+      <p>
+          <%  if @myleaves.new_record? %>
+            <%=f.submit 'Apply Leave' %>
+          <%  else 
+          %>
+            <%=f.hidden_field :id%>
+            <%=f.submit 'Update Leave' %>
+          <%  end %>&nbsp;&nbsp;&nbsp;
+
+      </p>
+    <% end %>
+    <% if !params.nil? %>
+    <script>
+      if($('#leave_to_date').val() != $('#leave_from_date').val()){
+          $('#leave_leave_duration').val("0")
+          $('#leave_leave_duration').change()
+          $('#leave_leave_duration').attr('disabled',true)
+
+      }else{
+          $('#leave_leave_duration').attr('disabled',false)
+      }
+    </script>
+    <% end %>
+</div> <!-- inner -->
+

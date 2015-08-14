@@ -1,0 +1,624 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *
+ *
+ */
+
+body{
+    color: #5d5d5d;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 13px;
+    font-weight: normal
+}
+#flash_error {
+  border: 1px solid #000066;
+  padding: 4px;
+  margin-bottom: 10px;
+  background-color: #cc3333;
+  color:#fff;
+}
+
+#flash_notice {
+  border: 1px solid #000066;
+  padding: 4px;
+  margin-bottom: 10px;
+  background-color: #A3B15A;
+  color:#fff;
+}
+
+form select.validation-error, form .field_with_errors input, form textarea.validation-error {
+    background: none repeat scroll 0 0 #fffffe;
+    border-color: #aa4935;
+    color: #aa4935;
+}
+
+form div#error_message {
+    color: #aa4935;
+}
+
+
+header.main-header{
+  margin: auto;
+  max-width: 1200px; 
+  min-height: 20px;
+}
+a {
+    color: #5d5d5d;
+    outline: medium none;
+}
+
+
+/*header.main-header nav ul{
+  list-style: outside none none;
+  margin: 0;
+  padding: 0;
+  width: 50%;
+  float: left;
+}*/
+header.main-header nav .logo-head{
+    height: 50px;
+    padding: 0;
+}
+header.main-header nav .navigation-right{
+  text-align:right;
+  width: 50%;
+  float: right;
+}
+header.main-header nav .logo-head .logo{
+    float:left;
+    padding-top:12px;
+    font-size: 24px;
+}
+
+#welcome {
+    background: url("welcome-down.png") no-repeat scroll right center rgba(0, 0, 0, 0);
+    color: #5d5d5d;
+    padding: 2px 32px 1px 1px;
+    position: absolute;
+    right: 85px;
+    
+    top: 8px;
+    z-index: 999;
+}
+.main-header .activated-welcome {
+    background: url("welcome-up.png") no-repeat scroll right center rgba(0, 0, 0, 0)!important;
+}
+
+
+
+#welcome a{
+    color: #5d5d5d;
+    text-decoration: none;
+}
+
+#welcome-menu {
+    background: none repeat scroll 0 0 #454648;
+    border-radius: 3px;
+    display: none;
+    min-width: 122px;
+    padding: 5px 10px;
+    position: absolute;
+    right: 90px;
+    top: 28px;
+    z-index: 1100;
+}
+
+#welcome-menu li a {
+    color: #fff;
+    line-height: 20px;
+    text-decoration: none;
+}
+
+ol, ul {
+    list-style: outside none none;
+}
+
+
+/*header.main-header nav ul li{
+  margin: 4px;
+  padding: 5px;
+  display: inline;
+}*/
+
+
+footer.main-footer{
+  margin: auto;
+  max-width: 1200px;  
+  font-size: 12px;
+}
+
+html,body,div, ul,a{
+    margin:0px;
+    padding: 0;
+    font:inherit;
+    font-size:13px
+}
+h1, h2, h3{
+    margin:0px;
+    padding: 0;
+}
+select{
+    width: 215px;
+}
+
+/*
+Login Section
+*/
+
+
+
+
+/* ================ Main menu styles: Begin ================ */
+.menu {
+	height:40px;
+	background:url(nav-bg.png) left bottom repeat-x;
+	position:relative;
+	z-index:10;
+}
+/*
+.nocurrent {
+	z-index:30;
+}
+.homecurrent {
+	z-index:20;
+}
+*/
+.menu ul {
+	padding:0;
+	margin:0;
+	list-style:none; 
+	padding:0;
+}
+.menu > ul {
+	float:left;
+}
+.menu > ul > li {
+	float:left;
+	margin-right:5px;
+}
+.menu > ul > li > a {
+	display:block;
+	color:#5d5d5d;
+	line-height:40px;
+	background:transparent;
+	text-decoration:none;
+	padding:0 10px;
+	font-size:14px;
+	-moz-border-radius-topleft: 3px;
+	-webkit-border-top-left-radius: 3px;
+	 border-top-left-radius: 3px;
+	-moz-border-radius-topright: 3px;
+	-webkit-border-top-right-radius: 3px;
+	border-top-right-radius: 3px;
+}
+.menu > ul > li > a b {
+	display:block;
+	background:transparent;
+	padding:0 10px 0 0;
+	font-weight:normal;
+	-moz-border-radius-topleft: 3px;
+	-webkit-border-top-left-radius: 3px;
+	 border-top-left-radius: 3px;
+	-moz-border-radius-topright: 3px;
+	-webkit-border-top-right-radius: 3px;
+	border-top-right-radius: 3px;
+}
+.menu > ul > li > ul {
+	position:absolute;
+	left:-9999px;
+	height:36px;
+    background:#d8d8d8;
+	opacity:0;
+	padding:4px 0 0;
+	width:100%;
+	-moz-transition: opacity 0.5s;
+	-ms-transition: opacity 0.5s;
+	-o-transition: opacity 0.5s;
+	-webkit-transition: opacity 0.5s;
+	transition: opacity 0.5s;
+}
+.menu > ul > li.current > ul {
+    position:absolute;
+    left:-9999px;
+    height:36px;
+    background:url(sub-nav.png) left bottom repeat-x;
+    opacity:0;
+    padding:4px 0 0;
+    width:100%;
+    -moz-transition: opacity 0.5s;
+    -ms-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
+    -webkit-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+}
+.menu > ul > li > ul > li {
+	float:left;
+	position:relative;
+}
+.menu > ul > li > ul > li > a {
+	display:block;
+    color:#333;
+	line-height:30px;
+	text-decoration:none;
+	padding:0 10px;
+	font-size:14px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	margin-right:5px;
+}
+.menu > ul > li.current > ul > li > a {
+	display:block;
+	color:#fff;
+	line-height:30px;
+	text-decoration:none;
+	padding:0 10px;
+	font-size:14px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	margin-right:5px;
+}
+.menu > ul > li > ul > li > a.arrow {
+	padding: 0 20px 0 10px;
+    background:url(sub-nav-arrow-n.png) no-repeat 92% 48%;
+}
+.menu > ul > li.current > ul > li > a.arrow {
+	padding: 0 20px 0 10px;
+	background:url(sub-nav-arrow.png) no-repeat 92% 48%;
+}
+.menu > ul > li > ul > li > ul {
+	position:absolute;
+	left:-9999px;
+	background:#555657;
+	padding:10px;
+	-moz-border-radius-topright: 3px;
+	-webkit-border-top-right-radius: 3px;
+	border-top-right-radius: 3px;
+	-moz-border-radius-bottomright: 3px;
+	-webkit-border-bottom-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	-moz-border-radius-bottomleft: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+.menu > ul > li > ul > li > ul > li > a {
+	display:block;
+	color:#ababab;
+	text-decoration:none;
+	padding:3px 5px 3px 0;
+	white-space:nowrap;
+	font-size:14px;
+	line-height:20px;
+}
+.menu > ul > li:hover > a {
+	background:url(top-nav-selected1.png);
+	color:#333;
+}
+.menu > ul > li:hover > a b {
+	background:url(top-nav-selected1.png);
+}
+.menu ul li:hover {
+	direction:ltr;
+}
+.menu > ul > li:hover > ul {
+	left:0;
+	opacity:1;
+}
+.menu > ul > li > ul > li:hover > a {
+	color:#fff; background:#555657;
+}
+.menu > ul > li > ul > li:hover > a.arrow {
+	background:#555657 url(sub-nav-arrow-s.png) no-repeat 92% 48%;
+}
+.menu > ul > li > ul > li:hover > ul {
+	left:0px;
+	top:27px;
+	-moz-transform: scaleY(1);
+	-ms-transform: scaleY(1);
+	-o-transform: scaleY(1);
+	-webkit-transform: scaleY(1);
+	transform: scaleY(1);
+}
+.menu > ul > li > ul > li > ul > li > a:hover {
+	color:#fff;
+}
+.menu > ul > li > ul > li > ul > li.selected > a {
+	color:#fff;
+}
+.menu > ul > li.current > a {
+	background:#f28c38;
+	color:#fff;
+}
+.menu > ul > li.current > a b {
+	background:#f28c38;
+}
+.menu > ul > li.current > ul {
+	left:0;
+/*	opacity:1;*/
+}
+.menu > ul:hover > li.current > a {
+	background:#f28c38;
+}
+.menu > ul:hover > li.current > a b {
+	background:#f28c38;
+}
+.menu > ul:hover > li.current > ul {
+	left:-9999px;
+}
+.menu > ul:hover > li.current:hover > a {
+	background:#f28c38;
+}
+.menu > ul:hover > li.current:hover > a b {
+	background:#f28c38;
+}
+.menu > ul:hover > li.current:hover > ul {
+	left:0;
+	opacity:1;
+}
+.menu > ul > li > ul > li.selected > a {
+	background:#555657;
+	color:#fff;
+}
+.menu > ul > li > ul > li.selected > a.arrow {
+	background:#555657 url(sub-nav-arrow-s.png) no-repeat 92% 48%;
+}
+.menu > ul > li > ul > li.current > a b {
+	background:#555657;
+}
+.menu > ul > li > ul > li.current > ul {
+	left:0;
+	opacity:1;
+}
+.menu > ul > li:first-child span{
+    background: url("icon_home.gif") no-repeat scroll 3px 8px rgba(0, 0, 0, 0);
+    padding: 12px;
+}
+.menu > ul > li.employee-manage span{
+    background: url("employee.png") no-repeat scroll 3px 8px rgba(0, 0, 0, 0);
+    padding: 12px;
+}
+.menu > ul > li.leaves span{
+    background: url("leaves.png") no-repeat scroll 3px 8px rgba(0, 0, 0, 0);
+    padding: 12px;
+}
+
+/* ================ Main menu styles: End ================ */
+
+/* ================ Content Section styles: Start ================ */
+
+/**
+Content Section
+**/
+section.main-content{
+  margin: auto;
+  max-width: 1200px;  
+  min-height: 600px;
+  padding: 12px;
+}
+
+.box {
+    margin: 20px;
+    position: relative;
+}
+.box .head {
+    position: relative;
+}
+
+.box .inner {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #f7f6f6;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-color: -moz-use-text-color #dedede #dedede;
+    border-image: none;
+    border-right: 1px solid #dedede;
+    border-style: none solid solid;
+    border-width: medium 1px 1px;
+    margin-bottom: 19px;
+    overflow: hidden;
+    padding: 15px;
+}
+
+.box .head h1 {
+    background: url("h1-bg.png") repeat-x scroll left bottom #f3f3f3;
+    border: 1px solid #dedede;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    color: #5d5d5d;
+    font-size: 18px;
+    line-height: 20px;
+    padding: 9px 5px;
+}
+
+form label {
+    color: #5d5d5d;
+    display: block;
+    float: left;
+    
+}
+
+form input, form select, form textarea {
+    background-color: #fff;
+    border: 1px solid #d2d1d1;
+    border-radius: 3px;
+    color: #5d5d5d;
+    font-size: 13px;
+    outline: medium none;
+    padding: 4px 6px;
+}
+
+
+input[type="button"], input[type="submit"] {
+    background-color: #33ac3f;
+    cursor: pointer
+}
+input:hover[type="button"], input:hover[type="submit"], input:hover[type="reset"] {
+    background-color: #086912;
+}
+input[type="button"], input[type="submit"], input[type="reset"] {
+    background: none repeat scroll 0 0 #33ac3f;
+    border: medium none;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 15px;
+    margin-right: 4px;
+    padding: 8px 20px;
+    cursor: pointer
+}
+
+table.all-user-list {
+    width:100%
+}
+table.all-user-list td a.edit{
+/*    background-image: url(ui-icons_ef8c08_256x240.png);
+    background-repeat: no-repeat;
+    background-position: 12px 12px;*/
+    
+}
+table.all-user-list th{
+    text-align:left
+}
+table tr td{
+    background-color: #eee;
+    padding: 5px;
+}
+table tr:hover td{
+    background-color: #F3F3F3;
+}
+table tr td.even{
+    background-color: #F3F3F3;
+    padding: 5px;
+}
+
+.employee-users .main-content .box span{
+    background: url("all_users.gif") no-repeat scroll 3px 8px rgba(0, 0, 0, 0);
+    padding: 15px;
+}
+.employee-addemployee .main-content .box span{
+    background: url("single_employee.png") no-repeat scroll 3px 8px rgba(0, 0, 0, 0);
+    padding: 13px;
+}
+.leave_configure-addleaveperiod .main-content .box span.head-second{
+    background: url("calendar.png") no-repeat scroll 3px 8px rgba(0, 0, 0, 0);
+    padding: 14px;
+}
+.leave_configure-addleaveperiod .main-content .box span{
+/*    background: url("add_event.png") no-repeat scroll 3px 8px rgba(0, 0, 0, 0);
+    padding: 14px;*/
+}
+.leave_configure-addleavetype .main-content .box span{
+/*    background: url("leave_type.png") no-repeat scroll 3px 8px rgba(0, 0, 0, 0);
+    padding: 14px;*/
+}
+.fa-sever-plus{
+    left: 0px;
+    margin-left: -22px;
+    color:white;
+    position: relative;
+    top: -4px;
+}
+.leave_configure-addworkweek .main-content .box span{
+/*    background: url("work.png") no-repeat scroll 3px 8px rgba(0, 0, 0, 0);
+    padding: 14px;*/
+}
+i.fa-fw{
+    color:#5d5d5d;
+}
+.all-user-list a i.fa-fw{
+    font-size:18px;    
+}
+.head h1 i.fa-fw{
+    font-size:22px;    
+}
+.icon-stack-2x{
+    font-size: 22px!important;
+}
+.icon-stack-1x{
+    font-size: 12px!important;
+}
+.icon-stack{
+    margin-right: 8px!important;
+}
+.approved i{
+    color:#33CC33
+}
+
+.unapproved i{
+    color:#CC0000
+}
+
+i.fa-trash{
+    color:#CC0000
+}
+i.fa-pencil{
+    color:#0052CC
+}
+
+span.approved{
+    background-color: green;
+    color:#ffffff;
+    padding:5px;
+}
+span.pending{
+    background-color: orange;
+    color:#ffffff;
+    padding:5px;
+}
+span.rejected{
+    background-color: red;
+    color:#ffffff;
+    padding:5px;
+}
+span.canceled{
+    background-color: black;
+    color:#ffffff;
+    padding:5px;
+}
+
+.digirole_1{
+    background-color:#244700;
+    color:#ffffff;
+    padding:5px;
+}
+
+.digirole_2{
+    background-color:#2E5C00;
+    color:#ffffff;
+    padding:5px;
+}
+
+.digirole_3{
+    background-color:#477519;
+    color:#ffffff;
+    padding:5px;
+}
+.digirole_4{
+    background-color:#70944D;
+    color:#ffffff;
+    padding:5px;
+}
+.digirole_5{
+    background-color:#99B280;
+    color:#ffffff;
+    padding:5px;
+}
+
+.digirole_6{
+    background-color: #C2D1B2;
+    color:#ffffff;
+    padding:5px;
+}

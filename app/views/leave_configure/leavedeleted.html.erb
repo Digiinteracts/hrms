@@ -1,0 +1,35 @@
+<div class="head"><h1><i class="fa fa-bed fa-fw"></i>Expired / Deleted Leaves</h1></div>
+<div class="inner">
+  <table class="all-user-list">
+    <tr>
+      <th width="25%">User</th>  
+      
+      <th width="20%">From - To</th> 
+      
+      <th width="5%">Days</th>
+      <th width="25%">Status</th>
+      <th width="15%">Applied On</th>
+      <th width="10%">Action</th>
+    </tr>
+    <% for leave in @leaveapplied %>
+      <tr>
+        <td><strong><%=leave.firstname%>&nbsp<%=leave.lastname%></strong><br/>
+        <%= leave.leavename %>
+        </td>
+        <td><%= ordinalize(leave.from_date.strftime "%-d") %> <%= leave.from_date.strftime "%b %Y" %> - <%= ordinalize(leave.to_date.strftime "%-d") %> <%= leave.to_date.strftime "%b %Y" %></td>
+        <td><%= leave.length_days %></td>
+        <td id="status_<%=leave.id%>"><span class="<%=  (get_value leave_status, leave.status_hr).downcase%>"><%= "HR / #{get_value leave_status, leave.status_hr} " %></span> 
+             &nbsp;<span class="<%=  (get_value leave_status, leave.status_pm).downcase%>"><%= "PM / #{get_value leave_status, leave.status_pm} " %></span></td>
+        <td><%= ordinalize(leave.date.strftime "%-d") %> <%= leave.date.strftime "%b %Y" %></td>
+        <td>
+            <% #if leave.status_hr == 0 && leave.status_pm == 0 %>
+            <%= link_to '<i class="fa fa-check fa-fw"></i>'.html_safe, "#", :class => "approved approvedleaves",:rel => leave.id , :title => "Approved" %> |
+            <%= link_to '<i class="fa fa-pencil fa-fw"></i>'.html_safe, editleaverequest_path(leave), :class => "edit", :title => "Edit" %> 
+            
+            <%#= link_to '<i class="fa fa-trash fa-fw"></i>'.html_safe,  deleteleaverequest_path(leave), :data => {:confirm => 'Are you sure? you want to cancel this leave now?'}, :method => :delete,:title => "Delete" %>
+            <% #end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

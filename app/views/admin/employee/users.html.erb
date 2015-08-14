@@ -1,0 +1,24 @@
+<div class="head"><h1><i class="fa fa-users fa-fw"></i> Employees</h1></div>
+<div class="inner">
+  <table class="all-user-list">
+    <tr>
+      <th width="20%">Username</th>
+      <th width="25%">Email</th>
+      <th width="10%">Empcode</th>
+      <th width="10%">Des.</th>
+      <th width="25%">Reports To</th>
+      <th width="10%">Action</th>
+    </tr>
+    <% for user in @users %>
+      <tr>
+        <td><%= user.username %></td>
+        <td><%= user.email %></td>
+        <td><%= user.empcode %></td>
+        <td><%= user.user_role %></td>
+        <td><strong class="digirole_<%=user.role%>"><%= user.reporting_to.to_s.upcase %> - <%= user.leads_role.to_s.upcase %></strong></td>
+        <td>
+            <%= link_to '<i class="fa fa-pencil fa-fw"></i>'.html_safe, admin_edit_user_path(user), :method => :get,:class => "edit", :title => "Edit" %> | <%= link_to '<i class="fa fa-trash fa-fw"></i>'.html_safe, admin_user_path(user), :data => {:confirm => 'Are you sure?'}, :method => :delete,:title => "Delete" %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

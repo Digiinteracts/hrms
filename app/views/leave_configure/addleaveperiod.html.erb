@@ -1,0 +1,56 @@
+<div class="head"><h1>
+  <span class="icon-stack">  
+  <i class="fa fa-calendar-o icon-stack-2x"></i>
+  <i class="fa fa-plus icon-stack-1x" style="margin-left: -21px;"></i>
+</span>
+   Add Leave Period</h1></div>
+<div class="inner">
+<%= form_for @leaveperiod, :url => addleaveperiod_path, :method => :post do |f| %>
+  <p>
+    <%= f.label 'Date From' %><br/>
+    <%= f.text_field :date_start, :class => 'datepicker', :readonly => true %>
+    <%= show_field_error(@leaveperiod, :date_start) %>
+  </p>
+  <p>
+    <%= f.label 'Date End' %><br/>
+   <%=  f.text_field :date_end, :class => 'datepicker' %>
+    <%= show_field_error(@leaveperiod, :date_end) %>
+  </p>
+ 
+  <p>
+    <%  if @leaveperiod.new_record? %>
+      <%=f.submit 'Add Period' %>
+      <%  else 
+        %>
+       <%=f.hidden_field :id%>
+      <%=f.submit 'Update Period' %>
+      <%  end %>&nbsp;&nbsp;&nbsp;
+    
+  </p>
+<% end %>
+</div>
+
+<div class="head"><h1><i class="fa fa-calendar fa-fw"></i> Leave Period</h1></div>
+<div class="inner">
+  <table class="all-user-list">
+    <tr>
+      <th width="30%">Start Date</th>
+      <th width="40%">End Date</th>
+      
+      <th width="10%">Action</th>
+    </tr>
+    <% i = 1; for leave_period in @leaveperiods 
+          classname=""
+          if i%2 == 0          
+          classname = "class=even"
+          end
+    %>
+      <tr>
+        <td <%=classname%>><%= leave_period.date_start %></td>
+        <td <%=classname%>><%= leave_period.date_end %></td>
+         <td <%=classname%>><%= link_to '<i class="fa fa-pencil fa-fw"></i>'.html_safe, edit_leave_period_path(leave_period), :method => :get %> | 
+        <%= link_to '<i class="fa fa-trash fa-fw"></i>'.html_safe, leave_period, :data=>{:confirm => 'Are you sure?'}, :method => :delete %></td>
+      </tr>
+    <% i += 1;end %>
+  </table>
+</div>

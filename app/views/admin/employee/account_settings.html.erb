@@ -1,0 +1,31 @@
+<%#
+# To change this license header, choose License Headers in Project Properties.
+# To change this template file, choose Tools | Templates
+# and open the template in the editor.
+%>
+
+<div class="head"><h1><i class="fa fa-lock fa-fw"></i>Change Password</h1></div>
+<div class="inner">
+<%= form_for @user, :as => :user, :url => admin_account_settings_path, :method => :put do |f| %>
+  
+  <p>
+    <%= f.label 'Old password:' %><br/>
+    <%= f.password_field :password %>
+    <%= show_field_error(@user, :password) %>
+  </p>
+  <p>
+    <%= f.label 'New password:' %><br/>
+    <%= f.password_field :new_password %>
+    <%= show_field_error(@user, :new_password) %>
+  </p>
+  <p>
+    <%= f.label 'password confirmation:' %><br/>
+    <%= f.password_field :password_confirmation %>
+    <%= show_field_error(@user, :password_confirmation) %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>&nbsp;&nbsp;&nbsp;
+    
+  </p>
+<% end %>
+</div>

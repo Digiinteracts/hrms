@@ -1,0 +1,2 @@
+module LeaveConfigureHelper
+end

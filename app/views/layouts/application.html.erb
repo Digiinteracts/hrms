@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HRMS Digiinteracts</title>
+  <%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', 'font-awesome/css/font-awesome.min.css' %>
+  <%= stylesheet_link_tag params[:controller] %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <script> var siteurl = '<%=request.base_url%>/' </script>
+   <%= javascript_include_tag params[:controller] %>
+  <%= csrf_meta_tags %>  
+  <script>
+    
+
+    </script>
+</head>
+<body class="<%=controller_name%>-<%=action_name%>" >
+  <% @currentClass = "current"
+     @selectedClass = "class=selected" %>
+    <header class="main-header">
+      <nav>
+        <!-- Main Navigation outside <header> -->
+        <div class="logo-head">
+            <div class="logo">HRMS</div>
+          <% if current_user %>
+            <div id="welcome" class="navigation-right"><a href="javascript:void(0);">Welcome <%= current_user.username %></a></div>
+            <div id="welcome-menu">
+                <ul>
+                    
+                    <li><%= link_to "Change Password", admin_account_settings_path %></li>
+                    <li><%= link_to "Sign Out", signed_out_path %></li>
+                </ul>
+            </div>
+          <% end %>
+        </div>
+          <div class="menu">
+              <ul >
+                <li class="<%=raw @currentClass  if (controller_name == "welcome" && action_name == "index") || controller_name == "dashboard" %>" ><%= link_to "<span></span>Home".html_safe, welcome_path %></li>
+                <% if current_user && is_access_permission %>
+                <li class="employee-manage <%=raw @currentClass  if action_name == "addemployee" ||  action_name == "users" %>" >
+                    <%= link_to "<span></span>Employee Managment".html_safe, "#" %>
+                    <ul>
+                        <li <%=raw @selectedClass if action_name == "addemployee" %>><%= link_to "Add Employee", admin_addemployee_path %></li>
+                        <li <%=raw @selectedClass if action_name == "users" %>><%= link_to "All Employee", admin_employees_path %></li>
+                        <li <%=raw @selectedClass if action_name == "exusers" %>><%= link_to "Ex. Employee", admin_exemployees_path %></li>
+                    </ul>
+                </li>
+                <% end %>
+                <% if current_user %>
+                <li class="leaves <%=raw @currentClass  if action_name == "addleaveperiod" ||  action_name == "addleavetype" ||  
+        action_name == "addworkweek" || action_name == "addleaveentitlement" || action_name == "listentitlement" || action_name == "leave_request" || 
+        action_name == "leavedeleted" || action_name == "leaveapproved" || action_name == "myentitlement" || action_name == "applyleave" || action_name == "leaveapplied" %>">
+                  <%= link_to "<span></span>Leaves".html_safe, "#" %>
+                    <ul>
+                        <% if is_access_permission %>
+                        <li <%=raw @selectedClass  if action_name == "addleaveperiod" ||  action_name == "addleavetype" ||  
+        action_name == "addworkweek" %>>
+                          <%= link_to "Configure", "#",:class => "arrow" %>
+                          <ul>
+                              <li <%=raw @selectedClass if action_name == "addleaveperiod" %>><%= link_to "Leave Period", addleaveperiod_path %></li>
+                              <li <%=raw @selectedClass if action_name == "addleavetype" %>><%= link_to "Leave Type", addleavetype_path %></li>
+                              <li <%=raw @selectedClass if action_name == "addworkweek" %>><%= link_to "Work Week", addworkweek_path %></li>
+                              
+                          </ul>
+                        </li>
+                        <li <%=raw @selectedClass  if action_name == "addleaveentitlement" || action_name == "listentitlement" %>>
+                          <%= link_to "Entitled", "#",:class => "arrow" %>
+                          <ul>
+                              
+                              <li <%=raw @selectedClass if action_name == "addleaveentitlement" %>><%= link_to "Add Entitlement", addleaveentitlement_path %></li>
+                              <li <%=raw @selectedClass if action_name == "listentitlement" %>><%= link_to "All Entitlement", listentitlement_path %></li>
+                          </ul>
+                        </li>
+                        
+                        <li <%=raw @selectedClass  if action_name == "leave_request" %>>
+                          <%= link_to "Leave Request", leaverequested_path %>                         
+                        </li>
+                        <li <%=raw @selectedClass  if action_name == "leaveapproved" %>>
+                          <%= link_to "Leave Approved", leaveapproved_path %>                         
+                        </li>
+                        <li <%=raw @selectedClass  if action_name == "leavedeleted" %>>
+                          <%= link_to "Exp. / Deleted Leave", leavedeleted_path %>                         
+                        </li>
+                        <% else %>
+                        <li <%=raw @selectedClass if action_name == "myentitlement" %>><%= link_to "My Entitlement", myentitlement_path %></li>
+                        <li <%=raw @selectedClass if action_name == "applyleave" %>><%= link_to "Apply", applyleave_path %></li>
+                        <li <%=raw @selectedClass if action_name == "leaveapplied" %>><%= link_to "Leaves", leaveapplied_path %></li>
+                       <% if get_loging_permission ==3 %>
+                        <li <%=raw @selectedClass  if action_name == "leave_request" %>><%= link_to "Leave Request", leaverequested_path %></li>
+                        <li <%=raw @selectedClass  if action_name == "leaveapproved" %>><%= link_to "Leave Approved", leaveapproved_path %></li>
+                        <li <%=raw @selectedClass  if action_name == "leavedeleted" %>><%= link_to "Exp. / Deleted Leave", leavedeleted_path %></li>
+                        <% end %>
+                      <% end %>
+                    </ul>
+                    
+                </li>
+                <% end %>
+                <% unless current_user %>  
+
+                <li class="<%=raw @currentClass  if action_name == "sign_in" %>"><%= link_to "Sign In", sign_in_path %></li>
+                <% end %>
+              </ul>
+          </div>      
+          
+      </nav>
+    </header>
+    <section class="main-content">
+        <div class="box">
+          <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+          <% end %>
+          <%= yield %>
+        </div>
+    </section>
+    <footer class="main-footer">
+       &copy; 2015 Digiinteracts.com
+    </footer>
+</body>
+</html>

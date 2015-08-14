@@ -1,0 +1,2 @@
+module LeavePeriodHelper
+end

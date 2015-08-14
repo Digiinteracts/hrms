@@ -1,0 +1,85 @@
+<%#
+# To change this license header, choose License Headers in Project Properties.
+# To change this template file, choose Tools | Templates
+# and open the template in the editor.
+%>
+
+<div class="head"><h1><i class="fa fa-user fa-fw"></i> Add / Update Employee</h1></div>
+<div class="inner">
+<%= form_for @user, :as => :user, :url => admin_addemployee_path, :method => :post do |f| %>
+  <p>
+    <%= f.label 'First Name:' %><br/>
+    <%= f.text_field :firstname %>
+    <%= show_field_error(@user, :firstname) %>
+  </p>
+  <p>
+    <%= f.label 'Last Name:' %><br/>
+    <%= f.text_field :lastname %>
+    <%= show_field_error(@user, :lastname) %>
+  </p>
+  <p>
+    <%= f.label 'Username:' %><br/>
+    <%= f.text_field :username %>
+    <%= show_field_error(@user, :username) %>
+  </p>
+  <p>
+    <%= f.label 'Employee code:' %><br/>
+    <%= f.text_field :empcode %>
+    <%= show_field_error(@user, :empcode) %>
+  </p>
+  <p>
+    <%= f.label 'Email:' %><br/>
+    <%= f.text_field :email %>
+    <%= show_field_error(@user, :email) %>
+  </p>
+  <p>
+    
+    <%= f.radio_button "gender", "0", :checked => true %>Male
+    <%= f.radio_button "gender", "1" %>Female
+    <%= show_field_error(@user, :gender) %>
+  </p>
+  <p>
+    <%= f.label 'Date Of Birth:' %><br/>
+    <%= f.text_field :date_of_birth, :class=>"dateofbirth" %>
+    <%= show_field_error(@user, :date_of_birth) %>
+  </p>
+  <p>
+    <%= f.label 'Marital Status:' %><br/>
+    <%= f.collection_select "marital_status", marital_status, :first, :last %>
+    <%= show_field_error(@user, :marital_status) %>
+  </p>
+  <p>
+    <%= f.label 'Role:' %><br/>
+    <%= f.collection_select "role", @userRoles, :id, :user_role,{:include_blank=>true} %><br/>
+    <small>If no role selected, user will be treated as Digi-employee</small>
+    <%= show_field_error(@user, :role) %>
+  </p>
+  <p>
+    <%= f.label 'Reporting Manager:' %><br/>
+    <%= f.collection_select "report_to", @users, :id, "#{:username}",{:include_blank=>true} %>
+    <%= show_field_error(@user, :report_to) %>
+  </p>
+  <p>
+    <%= f.label 'Password:' %><br/>
+    <%= f.password_field :password, :autocomplete => "off" %>
+    <br/>
+    <small>If leave blank, password will be (Employeecode@123)</small>
+    <%= show_field_error(@user, :password) %>
+  </p>
+  <p>
+    <%= f.label 'Password Confirmation:' %><br/>
+    <%= f.password_field :password_confirmation %>
+    <%= show_field_error(@user, :password_confirmation) %>
+  </p>
+  <p>
+    <%  if @user.new_record? %>
+      <%=f.submit 'Add Employee' %>
+      <%  else 
+        %>
+       <%=f.hidden_field :id%>
+      <%=f.submit 'Update Employee' %>
+      <%  end %>&nbsp;&nbsp;&nbsp;
+    
+  </p>
+<% end %>
+</div>

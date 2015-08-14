@@ -1,0 +1,112 @@
+
+<div class="head">
+    <h1><span class="icon-stack">  
+  <i class="fa fa-bed icon-stack-2x"></i>
+  <i class="fa fa-plus-square icon-stack-1x" style="left: 0px;
+    margin-left: -22px;
+    
+    position: relative;
+    top: 8px;"></i>
+</span>Add Leave Entitlement</h1>
+</div>
+<div class="inner">
+    <%= form_for @leaveentitle, :url => addleaveentitlement_path, :method => :post do |f| %>
+
+                    
+          
+              
+              <p>
+                  <%= f.label 'Employee' %><br/>
+                  <%= f.select(:emp_id, [ [ 'All Employee', 'all' ] ] + @users.collect {|p| [ p.username, p.id ] }, {:include_blank => 'Select Employee'}) %>
+                  <%= show_field_error(@leaveentitle, :emp_id) %>                      
+              </p>
+              <p>
+                  <%= f.label 'Leave Type' %><br/>
+                  <%= f.collection_select "leave_type_id", @leavetypes, :id, :leavename %> 
+                  
+                  <%= show_field_error(@leaveentitle, :leave_type_id) %> 
+                  
+              </p>
+              <p id="leave_period_field">
+                  <%= f.label 'Leave Period' %><br/>                  
+                  <% if @leaveentitle.leave_type_id.nil? || @leaveentitle.leave_type_id < 3 %>
+                  <%= f.collection_select "leave_type_id_period", @leaveperiods, "combined_value","combined_text" , {:include_blank => "Select one" ,:selected => "#{@leaveentitle.from_date}$$#{@leaveentitle.to_date}$$#{@leaveentitle.leave_period_id}"} %> 
+                  
+                  <input type="hidden" value="<%=@leaveentitle.from_date%>" name="leave_entitlement[from_date]" id="date_from" class="datepicker">  
+                  <input type="hidden" value="<%=@leaveentitle.to_date%>" name="leave_entitlement[to_date]" id="date_to" class="datepicker"> 
+                  <% else %>
+                  <input type="text" value="" placeholder="From" name="leave_entitlement[from_date]" id="date_from" class="datepicker">  
+                  <input type="text" value="" placeholder="To" name="leave_entitlement[to_date]" id="date_to" class="datepicker"> 
+                  <% end %>
+                  <input type="hidden" value="<%=@leaveentitle.leave_period_id%>" name="leave_entitlement[leave_period_id]" id="leave_period_id"> 
+                  <%= show_field_error(@leaveentitle, :from_date) %>
+                  <script type="text/javascript">
+
+
+
+                    $(document).ready(function () {
+                        var intialFrom = $('#date_from').val();
+                        var intialTo = $('#date_to').val();
+
+                       // $('#leave_entitlement_leave_type_id_period').val(intialFrom + '$$' + intialTo);
+
+                        $('#leave_entitlement_leave_type_id_period').change(function () {
+                            var val = $(this).val();
+
+                            if (typeof val == 'string') {
+                                var selectValue = val.split('$$');
+                                $('#date_from').val(selectValue[0]);
+                                $('#date_to').val(selectValue[1]);
+                                $('#leave_period_id').val(selectValue[2]);
+                            } else {
+                                $('#date_from').val('');
+                                $('#date_to').val('');
+                                $('#leave_period_id').val('');
+                            }
+                        });
+                        
+                        $("#leave_entitlement_leave_type_id").on('change',function(){
+                           if($(this).val() >= 3){
+                             
+                             $('#date_from').attr('type',"text")
+                             $('#date_from').attr('placeholder',"From")
+                             $('#date_to').attr('type',"text")
+                             $('#date_to').attr('placeholder',"To")
+                             $('#leave_period_id').val('')
+                             $('#leave_entitlement_leave_type_id_period').hide()
+                           }else{
+                             $('#date_from').attr('type',"hidden")
+                             $('#date_to').attr('type',"hidden")
+                             $('#leave_entitlement_leave_type_id_period').show()
+                           }
+                        })
+
+                    });
+                    
+                  </script>
+              </p>
+              <p>
+                   <%= f.label 'No of days' %><br/>
+
+                  <%= f.text_field :no_of_days %>
+                  <%= show_field_error(@leaveentitle, :no_of_days) %> 
+                  
+              </p>
+
+             
+                      
+
+          <p>
+              <%= unless @leaveentitle.new_record?
+                f.hidden_field :id
+              end
+              %>
+              <input type="submit" value="Save" id="btnSave">
+              <input type="button" value="Cancel" class="cancel" id="btnCancel">
+          </p>                
+      
+
+<% end %>
+
+</div> <!-- inner -->
+

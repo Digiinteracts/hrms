@@ -1,0 +1,33 @@
+<div class="head"><h1><i class="fa fa-bed icon-stack-2x"></i> All entitlement</h1></div>
+<div class="inner">
+  <table class="all-user-list">
+    <tr>
+      <th width="20%">Emp.</th>
+      <th width="10%">No. of days</th>
+      <th width="20%">Leave Type</th>
+      <th width="20%">Valid From</th>
+      <th width="20%">Valid To</th>
+      <th width="10%">Action</th>
+    </tr>
+    <% 
+    i = 1
+    
+    for leave_title in @leaveentitle 
+      classname = "";
+        if i%2 == 0          
+        classname = "class=even"
+        end
+      %>
+    
+      <tr>
+        <td <%=classname%>><%= leave_title.username %></td>
+        <td <%=classname%>><%= leave_title.no_of_days %></td>
+        <td <%=classname%>><%= get_leave_name(leave_title.leave_type_id) %></td>
+        <td <%=classname%>><%= date_format(leave_title.from_date) %></td>
+        <td <%=classname%>><%= date_format(leave_title.to_date) %></td>
+        <td <%=classname%>><%= link_to '<i class="fa fa-pencil fa-fw"></i>'.html_safe, edit_leave_entitlement_path(leave_title), :method => :get,:class => "edit", :title => "Edit" %></td>
+      </tr>
+    <% i += 1
+    end %>
+  </table>
+</div>

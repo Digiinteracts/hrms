@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+</head>
+<body>
+<h2>Welcome to <%= Rails.configuration.x.sitetitle %>, <%= @user.username %></h2>
+<p>
+You have successfully signed up to <%= Rails.configuration.x.sitetitle %>.<br/>
+your username is: <%= @user.username %>.<br/>
+your password is: <%= @password %>
+</p>
+<p>
+To login to the site, just follow this link: <%= @url.html_safe %>.
+</p>
+<p>Thanks for joining and have a great day!</p>
+<div style="margin-top: 20px">Regards,</div>
+<div><address><%=HRMS::Application.config.x.mailregardsname%> </address></div>
+</body>
+</html>
+

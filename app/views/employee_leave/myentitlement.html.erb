@@ -1,0 +1,148 @@
+<div class="head"><h1><i class="fa fa-bed fa-fw"></i> PL / CL </h1></div>
+<div class="inner">
+    <% unless @leaves.empty? %>
+  <table class="all-user-list">
+    <tr>
+      <th width="30%">Leave Type</th>
+      <th width="40%">Valid From</th>
+      <th width="20%">Valid To</th>
+      <th width="10%">Days</th>
+    </tr>
+    <% for leave in @leaves %>
+      <tr>
+        <td><%= leave.leavename %></td>
+        <td><%= leave.from_date.strftime "%d-%m-%Y" %></td>
+        <td><%= leave.to_date.strftime "%d-%m-%Y" %></td>
+        <td><%= leave.no_of_days %></td>
+      </tr>
+    <% end %>
+  </table>
+    <% else %>
+    <%= t 'NoRecordFoundText' %>
+    <% end %>
+</div>
+<div style="float:left;width:48%">
+<div class="head" ><h1><i class="fa fa-adjust fa-fw"></i> Comp. Off Leave</h1></div>
+<div class="inner">
+    <% unless @coleaves.empty? %>
+  <table class="all-user-list">
+    <tr>      
+      <th width="40%">Valid From</th>
+      <th width="40%">Valid To</th>
+      <th width="20%">Days</th>
+    </tr>
+    <% for leave in @coleaves %>
+      <tr>        
+        <td><%= leave.from_date.strftime "%d-%m-%Y" %></td>
+        <td><%= leave.to_date.strftime "%d-%m-%Y" %></td>
+        <td><%= leave.no_of_days %></td>
+      </tr>
+    <% end %>
+  </table>
+    <% else %>
+    <%= t 'NoRecordFoundText' %>
+    <% end %>
+</div>
+</div>
+<div style="float:right;width:48%">
+<div class="head"><h1><i class="fa fa-birthday-cake fa-fw"></i> Birthday Leave</h1></div>
+<div class="inner" >
+    <% unless @blleaves.empty? %>
+  <table class="all-user-list">
+    <tr>      
+      <th width="60%">Valid For</th>      
+      <th width="40%">Days</th>
+    </tr>
+    <% for leave in @blleaves %>
+      <tr>        
+        <td><%= ordinalize(leave.from_date.strftime "%d") %> <%= leave.from_date.strftime "%b %Y" %></td>        
+        <td><%= leave.no_of_days %></td>
+      </tr>
+    <% end %>
+  </table>
+  <% else %>
+    <%= t 'NoRecordFoundText' %>
+   <% end %>
+</div>
+</div>
+<div style="clear:both"></div>
+<% unless @current_user.marital_status == 0 %>
+<div style="float:left;width:35%;margin-right:40px">
+<div class="head"><h1><i class="fa fa-heart fa-fw"></i> Anniversary Leave</h1></div>
+<div class="inner">
+    <% unless @alleaves.empty? %>
+  <table class="all-user-list">
+    <tr>
+      
+      <th width="40%">Valid From</th>
+      <th width="40%">Valid To</th>
+      <th width="20%">Days</th>
+    </tr>
+    <% for leave in @alleaves %>
+      <tr>
+        
+        <td><%= leave.from_date.strftime "%d-%m-%Y" %></td>
+        <td><%= leave.to_date.strftime "%d-%m-%Y" %></td>
+        <td><%= leave.no_of_days %></td>
+      </tr>
+    <% end %>
+  </table>
+    <% else %>
+    <%= t 'NoRecordFoundText' %>
+    <% end %>
+</div>
+</div>
+<div style="float:left;width:30%">
+
+<div class="head"><h1><i class="fa fa-mars-double fa-fw"></i> Paternity Leave</h1></div>
+<div class="inner">
+    <% unless @ptlleaves.empty? %>
+  <table class="all-user-list">
+    <tr>
+      
+      <th width="40%">Valid From</th>
+      <th width="40%">Valid To</th>
+      <th width="20%">Days</th>
+    </tr>
+    <% for leave in @ptlleaves %>
+      <tr>
+        
+        <td><%= leave.from_date.strftime "%d-%m-%Y" %></td>
+        <td><%= leave.to_date.strftime "%d-%m-%Y" %></td>
+        <td><%= leave.no_of_days %></td>
+      </tr>
+    <% end %>
+  </table>
+    <% else %>
+    <%= t 'NoRecordFoundText' %>
+    <% end %>
+</div>
+</div>
+
+<div style="float:right;width:30%">
+<div class="head"><h1><i class="fa fa-venus-double fa-fw"></i> Maternity Leave</h1></div>
+<div class="inner">
+    <% unless @mtlleaves.empty? %>
+  <table class="all-user-list">
+    <tr>
+      
+      <th width="40%">Valid From</th>
+      <th width="40%">Valid To</th>
+      <th width="20%">Days</th>
+    </tr>
+    <% for leave in @mtlleaves %>
+      <tr>
+        
+        <td><%= leave.from_date.strftime "%d-%m-%Y" %></td>
+        <td><%= leave.to_date.strftime "%d-%m-%Y" %></td>
+        <td><%= leave.no_of_days %></td>
+      </tr>
+    <% end %>
+  </table>
+    <% else %>
+    <%= t 'NoRecordFoundText' %>
+    <% end %>
+</div>
+</div>
+<% end %>
+<div style="clear:both"></div>

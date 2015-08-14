@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+</head>
+<body>
+<div>Dear <%= HRMS::Application.config.x.directornametitle %>,</div>
+<div style="margin-top: 10px;margin-bottom: 20px">
+<%= @user.username %> has applied for leave(s).<br/>
+</div>
+<table border="1" cellpadding="4" cellspacing="4">
+    <tr>
+        <td><strong>Leave Type:</strong></td>  
+        <td><%= @mailerParamData[:leavetype] %></td>
+    </tr>
+    <tr>
+        <td><strong>From Date:</strong></td>  
+        <td><%= @mailerParamData[:from_date] %></td>
+    </tr>
+    <tr>
+        <td><strong>To Date:</strong></td>  
+        <td><%= @mailerParamData[:to_date] %></td>
+    </tr>
+    <% unless @mailerParamData[:day_half_selected].nil?%>
+    <tr>
+        <td><strong>Half Day In:</strong></td>  
+        <td><%= @mailerParamData[:day_half_selected]%></td>
+    </tr>
+    <% end %>
+    <tr>
+        <td><strong>No of Leaves:</strong></td>  
+        <td><%= @mailerParamData[:no_of_days] %> Day(s)</td>
+    </tr>
+    <tr>
+        <td><strong>Reason:</strong></td>  
+        <td><%= @mailerParamData[:reason]%></td>
+    </tr>
+    <tr>
+        <td><strong>Status:</strong></td>  
+        <td style="color:#ff0000">Pending</td>
+    </tr>
+    
+</table>
+<div style="margin-top: 20px">Regards,</div>
+<div><address><%=HRMS::Application.config.x.mailregardsname%> </address></div>
+
+
+</body>
+</html>
+
